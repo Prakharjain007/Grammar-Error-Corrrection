@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Voice Input and GEC</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 0;
+        }
+
+        h1 {
+            text-align: center;
+            background-color: #333;
+            color: white;
+            padding: 20px;
+        }
+
+        h2 {
+            margin-top: 20px;
+        }
+
+        #voice-form {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        button {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: white;
+            border-radius: 5px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        #spoken-text, #gec-output {
+            margin-top: 10px;
+        }
+
+    </style>
+</head>
+<body>
+    <h1>Voice Input and GEC</h1>
+    <div class="container">
+        <form id="voice-form" onsubmit="submitForm(); return false;">
+            <button type="submit">Start Voice Input</button>
+        </form>
+        <div>
+            <h2>Spoken Text:</h2>
+            <p id="spoken-text">Waiting for spoken text...</p>
+        </div>
+        <div>
+            <h2>Correct Output:</h2>
+            <p id="gec-output">Waiting for GEC output...</p>
+        </div>
+    </div>
+    <script>
+        // JavaScript to update spoken text and GEC output
+        const spokenTextElement = document.getElementById("spoken-text");
+        const gecOutputElement = document.getElementById("gec-output");
+
+        function updateSpokenText(text) {
+            spokenTextElement.innerText = text;
+        }
+
+        function updateGECOutput(text) {
+            gecOutputElement.innerText = text;
+        }
+
+        function submitForm() {
+            // AJAX request to Flask server
+            fetch("/process", {
+                method: "POST",
+            })
+            .then(response => response.json())
+            .then(data => {
+                updateSpokenText(data.spoken_text);
+                updateGECOutput(data.gec_output);
+            })
+            .catch(error => console.error(error));
+        }
+    </script>
+</body>
+</html>
