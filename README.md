@@ -82,13 +82,6 @@ Grammatical errors hinder clarity in communication, especially in spontaneous sp
 
 ---
 
-## 🖼️ System Architecture
-
-![Architecture Diagram](./static/architecture.png)  
-*(Diagram showing flow from voice input to corrected output using Flask & T5 model)*
-
----
-
 ## 🔄 Workflow
 
 1. 🎤 **Voice Input**: Captured via browser using Web Speech API.
@@ -148,8 +141,7 @@ Visit `http://127.0.0.1:5000/` in your browser.
 ## 📬 Contact
 
 **Prakhar Jain**  
-SRM Institute of Science and Technology  
-📧 pj7976@srmist.edu.in  
+📧 jainprakhar0712@gmail.com 
 🔗 [GitHub](https://github.com/Prakharjain007)
 
 ---
